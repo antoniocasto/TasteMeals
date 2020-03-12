@@ -10,18 +10,20 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('TasteMeals'),
       ),
-      body: GridView(
-        padding: const EdgeInsets.all(25),
-        children: DUMMY_CATEGORIES
-            .map((catData) =>
-                CategoryItem(title: catData.title, color: catData.color))
-            .toList(),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent:
-              200, //dimensione di ogni item. La grid viene costruita in base alla dimensione dell'item
-          childAspectRatio: 3 / 2, //definisco le proporzioni dell'item
-          crossAxisSpacing: 20, //per spazio tra item
-          mainAxisSpacing: 20, //per spazio tra item
+      body: SafeArea(
+        child: GridView(
+          padding: const EdgeInsets.all(25),
+          children: DUMMY_CATEGORIES
+              .map((catData) =>
+                  CategoryItem(title: catData.title, color: catData.color))
+              .toList(),
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent:
+                200, //dimensione di ogni item. La grid viene costruita in base alla dimensione dell'item
+            childAspectRatio: 3 / 2, //definisco le proporzioni dell'item
+            crossAxisSpacing: 20, //per spazio tra item
+            mainAxisSpacing: 20, //per spazio tra item
+          ),
         ),
       ),
     );
