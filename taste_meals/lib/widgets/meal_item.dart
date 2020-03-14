@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meet_network_image/meet_network_image.dart';
 import 'package:taste_meals/models/meal.dart';
 import 'package:taste_meals/screens/meal_detail_screen.dart';
 
@@ -78,11 +79,27 @@ class MealItem extends StatelessWidget {
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
-                  child: Image.network(
-                    imageUrl,
+                  child: MeetNetworkImage(
+                    imageUrl: imageUrl,
+                    fit: BoxFit.cover,
                     height: 250,
                     width: double.infinity,
-                    fit: BoxFit.cover,
+                    loadingBuilder: (BuildContext context) => Container(
+                      height: 250,
+                      width: double.infinity,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    errorBuilder: (BuildContext context, Object error) =>
+                        Center(
+                      child: Column(
+                        children: <Widget>[
+                          Icon(Icons.error),
+                          Text('Network Error.')
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 Positioned(
