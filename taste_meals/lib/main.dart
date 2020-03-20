@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taste_meals/screens/category_meals_screen.dart';
+import 'package:taste_meals/screens/filters_screen.dart';
 import 'package:taste_meals/screens/meal_detail_screen.dart';
 import 'package:taste_meals/screens/tabs_screen.dart';
 
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
             TabsScreen(), //o questo con initialRoute oppure Home, altrimenti non funziona
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
       onUnknownRoute: (settings) {
         //Raggiunta in caso si verifichi un qualunque problema con le altre route
