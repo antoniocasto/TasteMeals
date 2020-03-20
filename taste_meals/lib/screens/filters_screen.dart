@@ -3,6 +3,10 @@ import 'package:taste_meals/widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
+  final Function saveFilters;
+  final Map<String, bool> currentFilters;
+
+  FiltersScreen(this.saveFilters, this.currentFilters);
 
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
@@ -15,10 +19,33 @@ class _FiltersScreenState extends State<FiltersScreen> {
   bool _vegan = false;
 
   @override
+  void initState() {
+    _glutenFree = widget.currentFilters['gluten'];
+    _lactoseFree = widget.currentFilters['lactose'];
+    _vegetarian = widget.currentFilters['vegetarian'];
+    _vegan = widget.currentFilters['vegan'];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Filters'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              final selectedFilters = {
+                'gluten': _glutenFree,
+                'vegetarian': _vegetarian,
+                'lactose': _lactoseFree,
+                'vegan': _vegan,
+              };
+              widget.saveFilters(selectedFilters);
+            },
+          ), //usa widget. per acceder a valori fuori stato
+        ],
       ),
       drawer: MainDrawer(),
       body: SafeArea(
